@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+node $1 $2 &
+pid=$!
+sleep 2
+
+ab -n 10000 -c 200 http://localhost:3333/helloworld | grep 'Requests per second' 
+
+kill $pid
